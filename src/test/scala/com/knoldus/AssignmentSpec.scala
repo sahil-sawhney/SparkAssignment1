@@ -1,4 +1,5 @@
-import com.knoldus.Assignment
+package com.knoldus
+
 import org.scalatest.{FlatSpec, Matchers}
 
 
@@ -24,7 +25,7 @@ class AssignmentSpec extends FlatSpec with Matchers {
   "Assignment" should "have correct question 5" in {
 
     val result: Long = assignment.question5()
-    result should ===(704)
+    result should ===(2278417)
   }
 
   "Assignment" should "have correct question 6" in {

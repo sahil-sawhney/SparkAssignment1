@@ -60,9 +60,7 @@ class Assignment(inputFilePath:String) {
     */
   private def question4(allRecordRdd:RDD[String]):RDD[String]={
 
-    allRecordRdd.filter(x => x.contains("/en%") || x.contains("/en/") || x.contains("/EN%") || x.contains("/EN/"))
-    // here i have taken 4 cases for english language as in input file some different combinations for
-    // english language were also present(my assumption is these cases also represent language records)
+    allRecordRdd.filter(x => Evaluate.findEnglish(x))
   }
 
   /**
@@ -111,6 +109,18 @@ object Evaluate{
       result > greaterThanValue
     }
     else{false}
+  }
+
+  /**
+    * the method checks weather the project code language is english or not
+    *
+    * @param str the input string record
+    * @return boolean status telling weather the language is english or not
+    */
+  def findEnglish(str:String):Boolean={
+
+    val tempResult: Option[String] = Option(str.split(" ").apply(0)) //0 is the index of first column ie project code
+    tempResult.get == "en" //en is code for english language
   }
 
 }
